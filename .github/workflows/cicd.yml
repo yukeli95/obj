@@ -52,17 +52,17 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/app-test:v2 .
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/app-test:v3 .
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/app-test:v2
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/app-test:v3
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'yk'
           publish-profile: ${{ secrets.DOCKER_ABC }}
-          images: ${{ secrets.DOCKER_HUB_USERNAME }}/app-test:v2
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/app-test:v3
 
 
